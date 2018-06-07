@@ -485,7 +485,7 @@ class AudioProcessor(object):
       # Run the graph to produce the output audio.
 
       current_audiodata = sess.run(self.background_clamp, feed_dict=input_dict).flatten()
-      current_mfcc = librosa_mfcc.mfcc(current_audiodata, sr=16000, window_len=640, hop_len=320, n_fft=1024, n_mfcc=20).flatten()
+      current_mfcc = librosa_mfcc.mfcc(current_audiodata, sr=16000, window_len=640, hop_len=320, n_fft=1024, n_mfcc=model_settings['dct_coefficient_count']).flatten()
       data[i - offset, :] = current_mfcc
 
       # data[i - offset, :] = sess.run(self.mfcc_, feed_dict=input_dict).flatten()
